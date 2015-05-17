@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<head>
+<link rel="stylesheet" type="text/css" media="all" href="css.css" /> <!-- reset css -->
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
+
+<script>
+$(function(){
+
+    var canvas=document.getElementById("canvas");
+    var ctx=canvas.getContext("2d");
+
+
+	ctx.strokeStyle="transparent";
+   
+
+    var ballX=50;
+    var ballY=250;
+    var ballRadius=15;
+
+    var leftWall=40;
+    var rightWall=565;
+	var upWall=30;
+    var downWall=235;
+
+    draw();
+
+    function draw(){
+
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+
+       
+        ctx.beginPath();
+        ctx.moveTo(leftWall,0);
+        ctx.lineTo(leftWall,canvas.height);
+        ctx.moveTo(rightWall,0);
+        ctx.lineTo(rightWall,canvas.height);
+        ctx.lineWidth=0;
+        ctx.stroke();
+
+        
+        ctx.beginPath();
+        ctx.arc(ballX,ballY,ballRadius,0,Math.PI*2,false);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+
+   
+    function keyDownHandler(event){
+
+       
+        var key=event.which;
+
+        
+        if(key>80){ return; }
+
+        switch(key){
+            case 77:  // M key
+
+             
+              ballX += 100;
+
+           
+            var ballRight = ballX + ballRadius;
+
+            
+            if (ballRight >= rightWall) {
+                ballX = rightWall - ballRadius;
+            }
+
+              break;
+
+            case 76:  // L key
+
+				ballX -= 100;
+
+             
+            var ballLeft = ballX - ballRadius;
+
+           
+            if (ballLeft <= leftWall) {
+                ballX = leftWall + ballRadius;
+            }
+
+              break;
+			  
+			   /* case 82:  // R key
+
+              
+              transform.Rotate(-Vector3.up * speed * Time.deltaTime);
+
+             
+              var ballRight=ballX+ballRadius;
+
+              
+              if(ballRight>=rightWall){ ballX=rightWall-ballRadius; }
+
+              break; */
+			  
+
+            case 38:  // up key
+
+             
+
+                ballY -= 40;
+
+                
+                var ballup=ballY-ballRadius;
+
+                
+                if(ballup<=upWall){ ballY=upWall+ballRadius; }
+
+                break;
+				
+			  
+            case 40:  // down key
+
+                
+
+
+                ballY += 40;
+
+                
+                var balldown=ballY+ballRadius;
+
+                
+                if(balldown>=downWall){ ballY=downWall+ballRadius; }
+
+
+
+                break;
+        }
+
+        draw();
+
+    }
+	
+
+    window.addEventListener("keydown", keyDownHandler, true);
+
+
+});
+</script>
+
+<title>Catie Partin</title>
+</head>
+
+<body>
+<div class="instructions">
+    <h1>Mars Rover</h1>
+    <p>To Move:<br /><br />
+    The Rover is the black dot
+    <br /><br />
+    M = Move right one grid point
+    <br/ >
+    L= Move left one grid point
+    <br />
+    Up = Move up one grid point
+    <br />
+    Down=Move down one grid point</p>
+    </div>
+   
+    <canvas id="canvas" width="600px" height="300px"></canvas>
+</body>
+</html>
