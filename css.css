@@ -1,0 +1,33 @@
+body{ 
+background: url('background.jpg') no-repeat; 
+padding-right:20px;
+}
+
+
+#canvas{
+
+margin-left:198px;
+margin-top:185px;
+}
+
+h1 {
+font: helvetica;
+font-size:30px;	
+color: #FFF;
+	
+}
+
+p {
+font: helvetica;
+font-size:15px;	
+color: #FFF;	
+	
+}
+
+.instructions {
+width: 200px;
+height:200px;	
+position:absolute;
+	
+	
+}
